@@ -1,0 +1,38 @@
+﻿@model List<AzureTrainingExercise.Models.Student>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Student StudentObj in Model)
+        {
+            <tr>
+                <td>@StudentObj.Name</td>
+                <td>@StudentObj.Department</td>
+                <td>@StudentObj.Email</td>
+                <td>
+                    @if (!StudentObj.IsActive)
+                    {
+                        <text> <span style="color:red;">In Active</span> </text>
+                    }
+                    else
+                    {
+                        <text> <span style="color:green;">Active</span> </text>
+                    }
+                </td>
+                <td>
+                    <span>@Html.ActionLink("Edit", "Index", "Home", new { id = StudentObj.RowKey }, new { })</span>
+                    ||
+                    <span>@Html.ActionLink("Delete", "Delete", "Home", new { id = StudentObj.RowKey }, new { })</span>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>  
